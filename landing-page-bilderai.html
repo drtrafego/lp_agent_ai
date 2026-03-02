@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BilderAI — Seu Atendimento no WhatsApp, 24h por Dia</title>
+  <meta name="description" content="Agentes de IA que atendem, qualificam e vendem pelo WhatsApp. Configurado em 7 dias úteis, rodando 24/7.">
+  <meta property="og:title" content="BilderAI — Agentes de IA para WhatsApp">
+  <meta property="og:description" content="Nunca mais perca um lead por demora no atendimento.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ========================
+       RESET & BASE
+       ======================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ========================
+       VARIABLES
+       ======================== */
+    :root {
+      --bg: #080808;
+      --surface: #111111;
+      --surface2: #161616;
+      --border: rgba(255,255,255,0.07);
+      --text: #f2f2f2;
+      --muted: #6b7280;
+      --green: #00e676;
+      --green-dim: rgba(0,230,118,0.06);
+      --font-display: 'Syne', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --font-body: 'Instrument Sans', sans-serif;
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========================
+       LAYOUT
+       ======================== */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* ========================
+       TYPOGRAPHY
+       ======================== */
+    .section-label {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--green);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      display: inline-block;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    /* ========================
+       BUTTONS
+       ======================== */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--green);
+      color: #000;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--green); color: var(--green); }
+
+    /* ========================
+       NAVIGATION
+       ======================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      background: rgba(8,8,8,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--text);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .nav-logo span { color: var(--green); }
+
+    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* ========================
+       HERO
+       ======================== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 40px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 800px; height: 800px;
+      background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1100px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .hero-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--green);
+      background: var(--green-dim);
+      border: 1px solid rgba(0,230,118,0.15);
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      display: inline-block;
+      animation: blink 2s ease-in-out infinite;
+    }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero h1 em { font-style: normal; color: var(--green); }
+
+    .hero-sub { font-size: 1.1rem; color: var(--muted); line-height: 1.7; margin-bottom: 32px; }
+
+    .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 48px; }
+
+    .hero-stats { display: flex; gap: 32px; }
+
+    .stat { border-left: 2px solid var(--green); padding-left: 16px; }
+
+    .stat-num {
+      font-family: var(--font-display);
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ========================
+       WHATSAPP MOCKUP
+       ======================== */
+    .whatsapp-mockup {
+      background: #1a1a1a;
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 40px 80px rgba(0,0,0,0.5);
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .wpp-header {
+      background: #111;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+    .wpp-avatar {
+      width: 40px; height: 40px;
+      background: var(--green-dim);
+      border: 1px solid rgba(0,230,118,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+    }
+    .wpp-name { font-family: var(--font-display); font-weight: 700; font-size: 0.9rem; color: var(--text); }
+    .wpp-status { font-family: var(--font-mono); font-size: 0.68rem; color: var(--green); }
+
+    .wpp-body {
+      padding: 20px;
+      background: #0e0e0e;
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .msg {
+      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      opacity: 0;
+    }
+    .msg-user {
+      background: #1e3a2f;
+      color: #c8e6c9;
+      align-self: flex-end;
+      border-radius: 12px 2px 12px 12px;
+      animation: fadeInRight 0.4s ease forwards;
+    }
+    .msg-agent {
+      background: #1a1a1a;
+      color: var(--text);
+      border: 1px solid var(--border);
+      align-self: flex-start;
+      border-radius: 2px 12px 12px 12px;
+      animation: fadeInLeft 0.4s ease forwards;
+    }
+    .msg-time { font-family: var(--font-mono); font-size: 0.65rem; color: var(--muted); text-align: right; margin-top: 4px; }
+
+    .msg:nth-child(1) { animation-delay: 0.5s; }
+    .msg:nth-child(2) { animation-delay: 1.5s; }
+    .msg:nth-child(3) { animation-delay: 3.0s; }
+    .msg:nth-child(4) { animation-delay: 4.5s; }
+
+    @keyframes fadeInRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+    @keyframes fadeInLeft  { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ========================
+       HOW IT WORKS
+       ======================== */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    .step-card { background: var(--surface); padding: 32px 24px; }
+    .step-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--green);
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .step-num::after { content: ''; height: 1px; flex: 1; background: var(--border); }
+    .step-icon { font-size: 1.8rem; margin-bottom: 12px; }
+    .step-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    .step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ========================
+       FEATURES
+       ======================== */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    .feature-card { background: var(--surface); padding: 32px; transition: background 0.2s; }
+    .feature-card:hover { background: var(--surface2); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+    .feature-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 8px; }
+    .feature-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* ========================
+       FAQ
+       ======================== */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin-top: 60px;
+    }
+    .faq-item { background: var(--surface); }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      text-align: left;
+      padding: 24px 28px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+    .faq-question:hover { background: var(--surface2); }
+    .faq-answer { padding: 0 28px 24px; font-size: 0.9rem; color: var(--muted); line-height: 1.7; display: none; }
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-question { color: var(--green); }
+    .faq-chevron { font-style: normal; font-size: 1rem; transition: transform 0.2s; }
+    .faq-item.open .faq-chevron { transform: rotate(45deg); }
+
+    /* ========================
+       CTA FINAL
+       ======================== */
+    .cta-final { padding: 120px 40px; text-align: center; position: relative; }
+    .cta-final::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,230,118,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-final h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+    .cta-final p { color: var(--muted); font-size: 1.05rem; margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; line-height: 1.7; }
+    .cta-guarantees { margin-top: 24px; font-family: var(--font-mono); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.03em; }
+
+    /* ========================
+       FOOTER
+       ======================== */
+    footer {
+      padding: 40px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .footer-logo { font-family: var(--font-display); font-weight: 800; font-size: 1rem; color: var(--text); text-decoration: none; }
+    .footer-logo span { color: var(--green); }
+    .footer-copy { font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">Bilder<span>AI</span></a>
+    <ul class="nav-links">
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://wa.me/SEU_NUMERO" class="btn-primary">
+      <span>💬</span> Falar com especialista
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badge">// agente de IA para WhatsApp</div>
+        <h1>Nunca mais perca um lead por demora no atendimento.</h1>
+        <p class="hero-sub">
+          Agentes de IA que atendem, qualificam e vendem pelo WhatsApp — sem você precisar estar online. Configurado em até 7 dias úteis, rodando 24/7.
+        </p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/SEU_NUMERO" class="btn-primary">
+            <span>🚀</span> Quero meu agente agora
+          </a>
+          <a href="#como-funciona" class="btn-secondary">
+            Ver como funciona →
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <div class="stat-num">7 dias</div>
+            <div class="stat-label">Para ativar</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">24/7</div>
+            <div class="stat-label">Disponível</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">+90%</div>
+            <div class="stat-label">Taxa de resposta</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="whatsapp-mockup">
+          <div class="wpp-header">
+            <div class="wpp-avatar">🧠</div>
+            <div>
+              <div class="wpp-name">Agente BilderAI</div>
+              <div class="wpp-status">● online agora</div>
+            </div>
+          </div>
+          <div class="wpp-body">
+            <div class="msg msg-user">
+              Oi, quanto custa o plano mensal?
+              <div class="msg-time">14:32</div>
+            </div>
+            <div class="msg msg-agent">
+              Olá! 👋 O plano mensal é R$ 297/mês com suporte completo. Você tem algum segmento específico? Consigo mostrar como outros clientes do seu setor usam!
+              <div class="msg-time">14:32</div>
+            </div>
+            <div class="msg msg-user">
+              Sou do ramo de estética.
+              <div class="msg-time">14:33</div>
+            </div>
+            <div class="msg msg-agent">
+              Perfeito! Tenho clientes de estética que reduziram 80% dos no-shows com agendamento automático pelo WhatsApp. Quer ver um exemplo real? 😊
+              <div class="msg-time">14:33</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AGENTE VS CHATBOT -->
+  <section style="padding: 100px 40px; background: var(--bg);">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 60px;">
+        <div class="section-label">// não é chatbot</div>
+        <h2 class="section-title">A diferença que define<br>se você vende ou só responde.</h2>
+        <p class="section-sub" style="margin: 0 auto; text-align: center;">Chatbot executa regras fixas. Agente de IA pensa, adapta e converte.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; max-width: 900px; margin: 0 auto; align-items: start;">
+
+        <!-- CHATBOT COLUNA -->
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px 0 0 16px; overflow: hidden;">
+          <div style="background: rgba(255,59,48,0.08); border-bottom: 1px solid var(--border); padding: 20px 28px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🤖</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: #ff6b6b;">Chatbot Tradicional</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--muted); margin-top: 4px;">fluxo fixo · sem inteligência</div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Responde só o que foi programado</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Pergunta fora do fluxo = cliente perdido</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Menu de botões e opções fixas</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Experiência robótica e impessoal</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Não qualifica nem converte</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Só informa, não vende</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Não aprende com o contexto</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Cada conversa começa do zero</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Trava em perguntas abertas</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">"Não entendi. Digite 1 para..."</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: #ff6b6b; flex-shrink: 0; margin-top: 2px;">✕</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Exige programação para mudar</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Qualquer ajuste = horas de dev</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VS SEPARADOR -->
+        <div style="display: flex; align-items: center; justify-content: center; padding: 0 20px; min-height: 200px;">
+          <div style="font-family: var(--font-display); font-size: 1.1rem; font-weight: 800; color: var(--muted); writing-mode: vertical-rl; letter-spacing: 0.1em;">VS</div>
+        </div>
+
+        <!-- AGENTE IA COLUNA -->
+        <div style="background: var(--surface); border: 1px solid rgba(0,230,118,0.25); border-radius: 0 16px 16px 0; overflow: hidden; box-shadow: 0 0 40px rgba(0,230,118,0.06);">
+          <div style="background: var(--green-dim); border-bottom: 1px solid rgba(0,230,118,0.15); padding: 20px 28px; text-align: center;">
+            <div style="font-size: 2rem; margin-bottom: 8px;">🧠</div>
+            <div style="font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: var(--green);">Agente de IA</div>
+            <div style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--green); margin-top: 4px; opacity: 0.7;">inteligência real · conversação natural</div>
+          </div>
+          <div style="padding: 8px 0;">
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Responde qualquer pergunta naturalmente</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Treinado com todo o conteúdo do seu negócio</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Conversa fluida como humano</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Clientes não percebem que é IA</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Qualifica, vende e agenda</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Leva o lead até a conversão</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Mantém contexto durante toda a conversa</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Lembra do que foi dito anteriormente</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Adapta o tom para cada cliente</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Mais formal ou descontraído conforme necessário</div>
+              </div>
+            </div>
+            <div style="padding: 16px 28px; display: flex; gap: 12px; align-items: flex-start;">
+              <span style="color: var(--green); flex-shrink: 0; margin-top: 2px;">✓</span>
+              <div>
+                <div style="font-size: 0.88rem; color: var(--text); font-weight: 500;">Atualiza em texto, sem programação</div>
+                <div style="font-size: 0.78rem; color: var(--muted); margin-top: 2px;">Mudou o preço? Atualiza em minutos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA abaixo da comparação -->
+      <div style="text-align: center; margin-top: 52px;">
+        <a href="https://wa.me/SEU_NUMERO" class="btn-primary">
+          <span>🧠</span> Quero um agente, não um chatbot
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="como-funciona" style="padding: 100px 40px;">
+    <div class="container">
+      <div class="section-label">// processo</div>
+      <h2 class="section-title">Do zero ao agente ativo em 7 dias úteis</h2>
+      <p class="section-sub">Sem precisar saber programar. Nós cuidamos de tudo — você só aprova cada etapa.</p>
+      <div class="steps-grid">
+        <div class="step-card">
+          <div class="step-num">DIA 01</div>
+          <div class="step-icon">📋</div>
+          <div class="step-title">Briefing</div>
+          <div class="step-desc">Você nos conta sobre seu negócio, produtos, tom de voz, perguntas frequentes e principais objeções.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">DIA 02-03</div>
+          <div class="step-icon">⚙️</div>
+          <div class="step-title">Configuração</div>
+          <div class="step-desc">Montamos e treinamos seu agente com toda a base de conhecimento do seu negócio.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">DIA 04-05</div>
+          <div class="step-icon">🧪</div>
+          <div class="step-title">Testes</div>
+          <div class="step-desc">Você conversa diretamente com o agente. Ajustamos o que não estiver perfeito até você aprovar.</div>
+        </div>
+        <div class="step-card">
+          <div class="step-num">DIA 06-07</div>
+          <div class="step-icon">🚀</div>
+          <div class="step-title">Ativação</div>
+          <div class="step-desc">Conectamos ao seu WhatsApp e ativamos com você acompanhando. Suporte contínuo após o lançamento.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section style="padding: 100px 40px; background: var(--surface);">
+    <div class="container">
+      <div class="section-label">// funcionalidades</div>
+      <h2 class="section-title">Tudo que seu atendimento<br>precisa para converter.</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🕐</span>
+          <div class="feature-title">Atendimento 24/7</div>
+          <div class="feature-desc">Responde instantaneamente a qualquer hora, mesmo nos fins de semana e feriados. Nenhum lead fica sem resposta.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <div class="feature-title">Qualificação automática</div>
+          <div class="feature-desc">Identifica leads quentes, coleta informações essenciais e prioriza quem está pronto para comprar.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📅</span>
+          <div class="feature-title">Agendamento direto</div>
+          <div class="feature-desc">Agenda consultas, reuniões e visitas direto pelo WhatsApp, sem precisar de intervenção humana.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔗</span>
+          <div class="feature-title">WhatsApp nativo</div>
+          <div class="feature-desc">Opera no WhatsApp que seus clientes já usam. Sem apps novos, sem fricção, sem aprendizado.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <div class="feature-title">Dashboard de conversas</div>
+          <div class="feature-desc">Acompanhe todas as conversas, métricas de atendimento e leads gerados em tempo real.</div>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">✏️</span>
+          <div class="feature-title">Atualização simples</div>
+          <div class="feature-desc">Mudou preço, produto ou oferta? Atualize o agente em minutos com texto simples, sem programação.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding: 100px 40px;">
+    <div class="container">
+      <div class="section-label">// dúvidas</div>
+      <h2 class="section-title">Perguntas frequentes.</h2>
+      <div class="faq-list">
+        <div class="faq-item open">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            É realmente uma IA ou tem pessoas respondendo?
+            <i class="faq-chevron">+</i>
+          </button>
+          <div class="faq-answer">
+            É 100% IA. Nenhuma pessoa responde as mensagens — o agente usa modelos de linguagem avançados treinados com o conteúdo do seu negócio. O resultado é uma conversa natural, personalizada e disponível a qualquer hora.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Em quanto tempo o agente fica pronto?
+            <i class="faq-chevron">+</i>
+          </button>
+          <div class="faq-answer">
+            Em até 7 dias úteis seu agente está no ar. Fazemos o briefing, configuramos, testamos com você, ajustamos o que for necessário e ativamos. Você aprova cada etapa antes de ir ao ar.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Preciso saber programar para gerenciar o agente?
+            <i class="faq-chevron">+</i>
+          </button>
+          <div class="faq-answer">
+            Não. Para atualizar o agente, basta enviar um texto com as novas informações. Mudou o preço? Adicionou um serviço? Só nos avise e fazemos a atualização. Em breve você mesmo poderá fazer isso pelo painel.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            O agente funciona no meu número atual de WhatsApp?
+            <i class="faq-chevron">+</i>
+          </button>
+          <div class="faq-answer">
+            Sim. Conectamos ao seu número comercial existente via WhatsApp Business API. Seus clientes continuam mandando mensagem no mesmo número que já conhecem.
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            O que acontece se o agente não souber responder?
+            <i class="faq-chevron">+</i>
+          </button>
+          <div class="faq-answer">
+            O agente reconhece quando não tem informação suficiente e transfere educadamente para um atendente humano ou solicita que o cliente aguarde. Você configura como prefere que isso aconteça.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final">
+    <div class="container" style="position: relative; z-index: 1;">
+      <div class="section-label">// comece agora</div>
+      <h2>Configure hoje. Em até 7 dias úteis<br>seu agente está no ar.</h2>
+      <p>Em até 7 dias úteis seu agente está no ar, testado e aprovado por você. Primeiro mês com garantia.</p>
+      <a href="https://wa.me/SEU_NUMERO" class="btn-primary" style="font-size: 1.05rem; padding: 16px 36px;">
+        <span>🚀</span> Quero meu agente agora
+      </a>
+      <div class="cta-guarantees">
+        ✓ Garantia no primeiro mês &nbsp;·&nbsp; ✓ Sem contrato &nbsp;·&nbsp; ✓ Ativa em 7 dias úteis
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#" class="footer-logo">Bilder<span>AI</span></a>
+    <div class="footer-copy">© 2025 BilderAI · Todos os direitos reservados</div>
+  </footer>
+
+  <script>
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item')
+      const isOpen = item.classList.contains('open')
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'))
+      if (!isOpen) item.classList.add('open')
+    }
+  </script>
+
+</body>
+</html>
