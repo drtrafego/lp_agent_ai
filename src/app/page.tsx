@@ -88,6 +88,7 @@ export default function LandingPage() {
           utm_medium:   params.get('utm_medium')   ?? undefined,
           utm_campaign: params.get('utm_campaign') ?? undefined,
           utm_term:     params.get('utm_term')     ?? undefined,
+          utm_content:  params.get('utm_content')  ?? undefined,
         }),
       })
 

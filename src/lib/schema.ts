@@ -17,6 +17,7 @@ export const leads = pgTable('leads', {
   utm_medium:   text('utm_medium'),
   utm_campaign: text('utm_campaign'),
   utm_term:     text('utm_term'),
+  utm_content:  text('utm_content'),
 
   // ── Metadados ───────────────────────────────
   created_at: timestamp('created_at').defaultNow().notNull(),

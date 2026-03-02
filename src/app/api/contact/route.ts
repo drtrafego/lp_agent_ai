@@ -6,7 +6,7 @@
 //  2. Captura identificadores do request (IP, UA, cookies, origin)
 //  3. Persiste no Neon/PostgreSQL via Drizzle (timeout: 5 s)
 //  4. Responde 200 imediatamente ao cliente
-//  5. Dispara Meta CAPI + GA4 Measurement Protocol em background
+//  5. Dispara Meta CAPI + GA4 Measurement Protocol + Email em background
 // ─────────────────────────────────────────────────────────
 
 import { NextRequest, NextResponse } from 'next/server'
@@ -14,6 +14,7 @@ import { z } from 'zod'
 import { db } from '@/lib/db'
 import { leads } from '@/lib/schema'
 import { sendMetaCAPI, sendGA4Lead } from '@/lib/tracking-server'
+import { sendLeadEmail } from '@/lib/email-server'
 
 // ─── Schema de validação ─────────────────────────────────
 
@@ -26,6 +27,7 @@ const ContactSchema = z.object({
   utm_medium:   z.string().optional(),
   utm_campaign: z.string().optional(),
   utm_term:     z.string().optional(),
+  utm_content:  z.string().optional(),
 })
 
 type ContactInput = z.infer<typeof ContactSchema>
@@ -90,6 +92,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   // ── 3. Persistência no banco (timeout: 5 s) ───────────
 
   let leadId: number | string
+  const savedAt = new Date()
 
   try {
     const [row] = await withTimeout(
@@ -101,6 +104,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         utm_medium:   input.utm_medium,
         utm_campaign: input.utm_campaign,
         utm_term:     input.utm_term,
+        utm_content:  input.utm_content,
       }).returning({ id: leads.id }),
       5_000,
     )
@@ -139,6 +143,19 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       userAgent,
       eventSourceUrl,
     }).catch((err) => console.error('[contact] Erro GA4 background:', err)),
+
+    sendLeadEmail({
+      leadId,
+      name:         input.name,
+      email:        input.email,
+      whatsapp:     input.whatsapp,
+      utm_source:   input.utm_source,
+      utm_medium:   input.utm_medium,
+      utm_campaign: input.utm_campaign,
+      utm_term:     input.utm_term,
+      utm_content:  input.utm_content,
+      created_at:   savedAt,
+    }).catch((err) => console.error('[contact] Erro Email background:', err)),
   ])
 
   return response
