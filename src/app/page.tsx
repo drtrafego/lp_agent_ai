@@ -289,12 +289,12 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section style={{ padding: '100px 40px', background: 'var(--bg2)' }}>
+      <section className="section-alt">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="header-center">
             <div className="section-label">// não é chatbot</div>
             <h2 className="section-title">A diferença que define<br />se você vende ou só responde.</h2>
-            <p className="section-sub" style={{ margin: '0 auto', textAlign: 'center' }}>Chatbot executa regras fixas. Agente de IA pensa, adapta e converte.</p>
+            <p className="section-sub sub-center">Chatbot executa regras fixas. Agente de IA pensa, adapta e converte.</p>
           </div>
 
           <div className="vs-grid">
@@ -518,7 +518,7 @@ export default function LandingPage() {
 
       <section className="faq" id="faq">
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+          <div className="header-center">
             <div className="section-label">// dúvidas</div>
             <h2 className="section-title">Perguntas frequentes</h2>
           </div>
@@ -536,9 +536,7 @@ export default function LandingPage() {
       <section className="cta-final">
         <div className="cta-terminal">agente.deploy --status=pronto --prazo=7dias</div>
         <h2 className="cta-title">
-          Pronto para parar<br />
-          de perder clientes<br />
-          <span style={{ color: 'var(--green)' }}>por demora?</span>
+          Pronto para parar de perder clientes <span style={{ color: 'var(--green)' }}>por demora?</span>
         </h2>
         <p className="cta-sub">
           Em até 7 dias úteis seu agente está treinado, validado e operando. Fale agora e entenda como funciona para o seu negócio.
