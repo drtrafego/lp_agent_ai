@@ -113,391 +113,439 @@ export default function LandingPage() {
 
   return (
     <>
-      {/* HERO */}
+      <nav>
+        <div className="nav-logo">Agente<span>24h</span></div>
+        <ul className="nav-links">
+          <li><a href="#como-funciona">Como funciona</a></li>
+          <li><a href="#nichos">Nichos</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a href={WHATSAPP} className="nav-cta">Falar Agora →</a>
+      </nav>
+
       <section className="hero">
+        <div className="hero-glow"></div>
+        <div className="hero-glow2"></div>
         <div className="hero-inner">
-          <div>
-            <div className="hero-badge">Não é chatbot · É inteligência real</div>
-            <h1>Seu WhatsApp<br />nunca mais<br /><em>perde um lead</em><br /><span style={{ color: "var(--muted)" }}>por demora.</span></h1>
+          <div className="hero-content">
+            <div className="hero-badge">
+              <span className="badge-dot"></span>
+              Não é chatbot · É inteligência real
+            </div>
+            <h1 className="hero-title">
+              Seu WhatsApp<br />
+              nunca mais<br />
+              <span className="accent">perde um cliente</span><br />
+              <span className="dim">por demora.</span>
+            </h1>
             <p className="hero-sub">
-              Um agente de IA treinado com os dados do seu negócio. Ele lê o contexto, conduz a conversa e qualifica o lead — sem fluxo fixo, sem botões, sem "não entendi". Ativo em até 7 dias úteis.
+              Um agente de IA treinado com os dados do seu negócio. Ele lê o contexto, conduz a conversa e filtra quem tem interesse real — sem fluxo fixo, sem botões, sem "não entendi". Ativo em até 7 dias úteis.
             </p>
-            <div className="hero-ctas">
-              <a href="#contato" className="btn-primary">
-                <span>🚀</span> Quero meu agente agora
+            <div className="hero-actions">
+              <a href={WHATSAPP} className="btn-primary">
+                <span>💬</span> Quero meu agente agora
               </a>
-              <Link href="#como-funciona" className="btn-secondary">
-                Ver como funciona →
-              </Link>
+              <a href="#como-funciona" className="btn-secondary">
+                Ver como funciona ↓
+              </a>
             </div>
             <div className="hero-stats">
-              <div className="stat">
-                <div className="stat-num">7 dias</div>
-                <div className="stat-label">Para ir ao ar</div>
-              </div>
-              <div className="stat">
+              <div className="stat-item">
                 <div className="stat-num">24/7</div>
                 <div className="stat-label">Sem interrupção</div>
               </div>
-              <div className="stat">
+              <div className="stat-item">
+                <div className="stat-num">7 dias</div>
+                <div className="stat-label">Para ir ao ar</div>
+              </div>
+              <div className="stat-item">
                 <div className="stat-num">IA real</div>
                 <div className="stat-label">Não é chatbot</div>
               </div>
             </div>
           </div>
 
-          {/* WhatsApp Mockup */}
-          <div>
-            <div className="whatsapp-mockup">
-              <div className="wpp-header">
-                <div className="wpp-avatar">🧠</div>
+          <div className="hero-visual">
+            <div className="phone-badge">🤖 respondendo agora</div>
+            <div className="phone-frame">
+              <div className="phone-header">
+                <div className="phone-avatar">🤖</div>
                 <div>
-                  <div className="wpp-name">Agente24horas</div>
-                  <div className="wpp-status">● online agora</div>
+                  <div className="phone-name">Sofia · Clínica Bella</div>
+                  <div className="phone-status">online agora</div>
                 </div>
               </div>
-              <div className="wpp-body">
-                <div className="msg msg-user">
-                  Oi, quanto custa o plano mensal?
-                  <div className="msg-time">14:32</div>
+              <div className="phone-body">
+                <div className="msg msg-out msg-1">
+                  Oi, vi o anúncio! Quanto custa uma consulta?
+                  <div className="msg-time">23:14</div>
                 </div>
-                <div className="msg msg-agent">
-                  Olá! 👋 O plano mensal é R$ 297/mês com suporte completo. Você tem algum
-                  segmento específico? Consigo mostrar como outros clientes do seu setor usam!
-                  <div className="msg-time">14:32</div>
+                <div className="typing typing-1">
+                  <span></span><span></span><span></span>
                 </div>
-                <div className="msg msg-user">
-                  Sou do ramo de estética.
-                  <div className="msg-time">14:33</div>
+                <div className="msg msg-in msg-2">
+                  Olá! 😊 Nossas consultas começam a partir de R$180. Temos horários disponíveis amanhã! Qual especialidade você precisa?
+                  <div className="msg-time">23:14</div>
                 </div>
-                <div className="msg msg-agent">
-                  Perfeito! Tenho clientes de estética que reduziram 80% dos no-shows com
-                  agendamento automático pelo WhatsApp. Quer ver um exemplo real? 😊
-                  <div className="msg-time">14:33</div>
+                <div className="msg msg-out msg-3">
+                  Ortopedia. Tem horário às 14h?
+                  <div className="msg-time">23:15</div>
                 </div>
+                <div className="typing typing-2">
+                  <span></span><span></span><span></span>
+                </div>
+                <div className="msg msg-in msg-4">
+                  Perfeito! Temos 14h disponível com o Dr. Carlos. Para confirmar, me passa seu nome completo? ✅
+                  <div className="msg-time">23:15</div>
+                </div>
+              </div>
+            </div>
+            <div className="phone-badge2">
+              <strong>+R$1.200</strong>
+              consulta agendada às 23h
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="logos-bar">
+        <div className="logos-inner">
+          <span className="logos-label">Implantado em</span>
+          <div className="logos-list">
+            <span className="logo-tag">🏥 Clínicas</span>
+            <span className="logo-tag">💪 Academias</span>
+            <span className="logo-tag">🏠 Imobiliárias</span>
+            <span className="logo-tag">🎓 Infoprodutores</span>
+            <span className="logo-tag">🍕 Restaurantes</span>
+            <span className="logo-tag">⚖️ Escritórios</span>
+            <span className="logo-tag">+ qualquer negócio</span>
+          </div>
+        </div>
+      </div>
+
+      <section className="problem" id="problema">
+        <div className="container">
+          <div className="problem-grid">
+            <div>
+              <div className="section-label">// o problema real</div>
+              <h2 className="section-title">O anúncio funciona.<br />O atendimento é o gargalo.</h2>
+              <p className="section-sub">Você investe em tráfego, o lead chega e some porque ninguém respondeu rápido o suficiente. Não é falha de estratégia. É falha de velocidade.</p>
+              <ul className="problem-list">
+                <li className="problem-item">
+                  <span className="problem-icon">⏱</span>
+                  <div className="problem-text">
+                    <strong>Velocidade decide quem fecha</strong>
+                    <span>Quem manda mensagem às 23h não espera até amanhã. Ele abre o próximo resultado e compra lá.</span>
+                  </div>
+                </li>
+                <li className="problem-item">
+                  <span className="problem-icon">🔁</span>
+                  <div className="problem-text">
+                    <strong>Sua equipe responde as mesmas perguntas todo dia</strong>
+                    <span>Preço, horário, disponibilidade. São horas perdidas por semana em perguntas que uma IA resolve em segundos.</span>
+                  </div>
+                </li>
+                <li className="problem-item">
+                  <span className="problem-icon">📉</span>
+                  <div className="problem-text">
+                    <strong>CPL sobe, conversão fica igual</strong>
+                    <span>Mais verba no tráfego não resolve atendimento lento. O problema não está no anúncio.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div className="comparison-box">
+              <div className="comp-row">
+                <div className="comp-header comp-before">Sem agente</div>
+                <div className="comp-header comp-after">Com agente</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Responde em horas</div>
+                <div className="comp-item comp-item-after">✅ Responde em segundos</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Para de noite e fim de semana</div>
+                <div className="comp-item comp-item-after">✅ 24h por dia, 7 dias por semana</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Cliente some esperando resposta</div>
+                <div className="comp-item comp-item-after">✅ Cliente atendido na hora</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Equipe sobrecarregada</div>
+                <div className="comp-item comp-item-after">✅ Time foca em fechar</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Perda de receita noturna</div>
+                <div className="comp-item comp-item-after">✅ Agenda preenchida 24h</div>
+              </div>
+              <div className="comp-row">
+                <div className="comp-item comp-item-before">❌ Custo alto com atendentes</div>
+                <div className="comp-item comp-item-after text-green-500 font-bold">✅ Custo fixo e previsível</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* AGENTE VS CHATBOT */}
-      <section style={{ padding: '100px 40px', background: 'var(--bg)' }}>
+      <section style={{ padding: '100px 40px', background: 'var(--bg2)' }}>
         <div className="container">
           <div style={{ textAlign: 'center', marginBottom: '60px' }}>
             <div className="section-label">// não é chatbot</div>
-            <h2 className="section-title">
-              A diferença que define<br />se você vende ou só responde.
-            </h2>
-            <p className="section-sub" style={{ margin: '0 auto', textAlign: 'center' }}>
-              Chatbot executa regras fixas. Agente de IA pensa, adapta e converte.
-            </p>
+            <h2 className="section-title">A diferença que define<br />se você vende ou só responde.</h2>
+            <p className="section-sub" style={{ margin: '0 auto', textAlign: 'center' }}>Chatbot executa regras fixas. Agente de IA pensa, adapta e converte.</p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr auto 1fr',
-              gap: '0',
-              maxWidth: '900px',
-              margin: '0 auto',
-              alignItems: 'start',
-            }}
-          >
-            {/* CHATBOT COLUNA */}
-            <div
-              style={{
-                background: 'var(--surface)',
-                border: '1px solid var(--border)',
-                borderRadius: '16px 0 0 16px',
-                overflow: 'hidden',
-              }}
-            >
-              <div
-                style={{
-                  background: 'rgba(255,59,48,0.08)',
-                  borderBottom: '1px solid var(--border)',
-                  padding: '20px 28px',
-                  textAlign: 'center',
-                }}
-              >
+          <div className="vs-grid">
+            <div className="vs-col-bad">
+              <div className="vs-header-bad">
                 <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🤖</div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 800,
-                    fontSize: '1.1rem',
-                    color: '#ff6b6b',
-                  }}
-                >
-                  Chatbot Tradicional
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: 'var(--muted)',
-                    marginTop: '4px',
-                  }}
-                >
-                  fluxo fixo · sem inteligência
-                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.1rem', color: '#ff6b6b' }}>Chatbot Tradicional</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: '#ff6b6b', opacity: 0.6, marginTop: '4px' }}>fluxo fixo · sem inteligência</div>
               </div>
-              <div style={{ padding: '8px 0' }}>
-                {[
-                  ['Responde só o que foi programado', 'Pergunta fora do fluxo = cliente perdido'],
-                  ['Menu de botões e opções fixas', 'Experiência robótica e impessoal'],
-                  ['Não qualifica nem converte', 'Só informa, não vende'],
-                  ['Não aprende com o contexto', 'Cada conversa começa do zero'],
-                  ['Trava em perguntas abertas', '"Não entendi. Digite 1 para..."'],
-                  ['Exige programação para mudar', 'Qualquer ajuste = horas de dev'],
-                ].map(([title, sub], i, arr) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: '16px 28px',
-                      borderBottom: i < arr.length - 1 ? '1px solid var(--border)' : undefined,
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'flex-start',
-                    }}
-                  >
-                    <span style={{ color: '#ff6b6b', flexShrink: 0, marginTop: '2px' }}>✕</span>
-                    <div>
-                      <div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>
-                        {title}
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
-                        {sub}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Responde só o que foi programado</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Pergunta fora do script significa cliente perdido</div></div></div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Menu de botões e opções fixas</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Experiência robótica e impessoal</div></div></div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Não filtra nem converte</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Só informa, não vende</div></div></div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Esquece tudo entre mensagens</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Cada resposta começa do zero</div></div></div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Trava em perguntas abertas</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>"Não entendi. Digite 1 para..."</div></div></div>
+              <div className="vs-row"><span style={{ color: '#ff4444', flexShrink: 0, fontSize: '1rem' }}>✕</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Exige programação para mudar</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Qualquer ajuste custa horas de desenvolvimento</div></div></div>
             </div>
 
-            {/* VS SEPARADOR */}
-            <div
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '0 20px',
-                minHeight: '200px',
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: '1.1rem',
-                  fontWeight: 800,
-                  color: 'var(--muted)',
-                  writingMode: 'vertical-rl',
-                  letterSpacing: '0.1em',
-                }}
-              >
-                VS
-              </div>
+            <div className="vs-separator">
+              <div style={{ fontFamily: 'var(--font-display)', fontSize: '1rem', fontWeight: 800, color: 'var(--muted)', writingMode: 'vertical-rl', letterSpacing: '0.15em', background: 'var(--surface)', padding: '12px 8px', borderRadius: '8px', border: '1px solid var(--border)' }}>VS</div>
             </div>
 
-            {/* AGENTE IA COLUNA */}
-            <div
-              style={{
-                background: 'var(--surface)',
-                border: '1px solid rgba(0,230,118,0.25)',
-                borderRadius: '0 16px 16px 0',
-                overflow: 'hidden',
-                boxShadow: '0 0 40px rgba(0,230,118,0.06)',
-              }}
-            >
-              <div
-                style={{
-                  background: 'var(--green-dim)',
-                  borderBottom: '1px solid rgba(0,230,118,0.15)',
-                  padding: '20px 28px',
-                  textAlign: 'center',
-                }}
-              >
+            <div className="vs-col-good">
+              <div className="vs-header-good">
                 <div style={{ fontSize: '2rem', marginBottom: '8px' }}>🧠</div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-display)',
-                    fontWeight: 800,
-                    fontSize: '1.1rem',
-                    color: 'var(--green)',
-                  }}
-                >
-                  Agente de IA
-                </div>
-                <div
-                  style={{
-                    fontFamily: 'var(--font-mono)',
-                    fontSize: '0.72rem',
-                    color: 'var(--green)',
-                    marginTop: '4px',
-                    opacity: 0.7,
-                  }}
-                >
-                  inteligência real · conversação natural
-                </div>
+                <div style={{ fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: '1.1rem', color: 'var(--green)' }}>Agente de IA</div>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.72rem', color: 'var(--green)', opacity: 0.7, marginTop: '4px' }}>inteligência real · conversação natural</div>
               </div>
-              <div style={{ padding: '8px 0' }}>
-                {[
-                  ['Responde qualquer pergunta naturalmente', 'Treinado com todo o conteúdo do seu negócio'],
-                  ['Conversa fluida como humano', 'Clientes não percebem que é IA'],
-                  ['Qualifica, vende e agenda', 'Leva o lead até a conversão'],
-                  ['Mantém contexto durante toda a conversa', 'Lembra do que foi dito anteriormente'],
-                  ['Adapta o tom para cada cliente', 'Mais formal ou descontraído conforme necessário'],
-                  ['Atualiza em texto, sem programação', 'Mudou o preço? Atualiza em minutos'],
-                ].map(([title, sub], i, arr) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: '16px 28px',
-                      borderBottom: i < arr.length - 1 ? '1px solid var(--border)' : undefined,
-                      display: 'flex',
-                      gap: '12px',
-                      alignItems: 'flex-start',
-                    }}
-                  >
-                    <span style={{ color: 'var(--green)', flexShrink: 0, marginTop: '2px' }}>✓</span>
-                    <div>
-                      <div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>
-                        {title}
-                      </div>
-                      <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '2px' }}>
-                        {sub}
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Responde qualquer pergunta naturalmente</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Treinado com todo o conteúdo do seu negócio</div></div></div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Conversa fluida como humano</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Clientes não percebem que é IA</div></div></div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Entende, filtra e agenda clientes</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Leva o atendimento até a conversão</div></div></div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Mantém o contexto durante toda a conversa</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Lembra do que foi dito anteriormente</div></div></div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Adapta o tom para cada pessoa</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Mais formal ou descontraído conforme o caso</div></div></div>
+              <div className="vs-row"><span style={{ color: 'var(--green)', flexShrink: 0, fontSize: '1rem' }}>✓</span><div><div style={{ fontSize: '0.88rem', color: 'var(--text)', fontWeight: 500 }}>Atualiza em texto, sem programação</div><div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '3px' }}>Mudou o preço? Atualiza em minutos</div></div></div>
             </div>
           </div>
 
-          {/* CTA abaixo da comparação */}
           <div style={{ textAlign: 'center', marginTop: '52px' }}>
-            <a href="#contato" className="btn-primary">
-              <span>🧠</span> Quero um agente, não um chatbot
-            </a>
+            <a href={WHATSAPP} className="btn-primary"><span>🧠</span> Quero um agente, não um chatbot</a>
           </div>
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
-      <section id="como-funciona" style={{ padding: '100px 40px' }}>
+      <section className="how" id="como-funciona">
         <div className="container">
-          <div className="section-label">// implantação</div>
-          <h2 className="section-title">Processo estruturado.<br />Resultado previsível.</h2>
-          <p className="section-sub">
-            Cada etapa tem entregável e aprovação sua. Nada vai ao ar sem você validar. Prazo: até 7 dias úteis.
-          </p>
-          <div className="steps-grid">
-            <div className="step-card">
-              <div className="step-num">DIA 01</div>
-              <div className="step-icon">📋</div>
+          <div className="how-header">
+            <div className="section-label">// implantação</div>
+            <h2 className="section-title">Processo estruturado.<br />Resultado previsível.</h2>
+            <p className="section-sub">Cada etapa tem entregável e aprovação sua. Nada vai ao ar sem você validar. Prazo: até 7 dias úteis.</p>
+          </div>
+          <div className="steps">
+            <div className="step">
+              <div className="step-num">01</div>
               <div className="step-title">Diagnóstico</div>
-              <div className="step-desc">
-                Mapeamos seus serviços, objeções comuns, tom de voz e o fluxo ideal para converter no seu nicho.
-              </div>
+              <p className="step-desc">Mapeamos seus serviços, objeções comuns, tom de voz e o fluxo ideal para converter no seu nicho.</p>
             </div>
-            <div className="step-card">
-              <div className="step-num">DIA 02-03</div>
-              <div className="step-icon">⚙️</div>
+            <div className="step">
+              <div className="step-num">02</div>
               <div className="step-title">Treinamento</div>
-              <div className="step-desc">
-                O agente é treinado com os dados do seu negócio: preços, FAQ, políticas, scripts de venda.
-              </div>
+              <p className="step-desc">O agente é treinado com os dados do seu negócio: preços, FAQ, políticas, scripts de venda.</p>
             </div>
-            <div className="step-card">
-              <div className="step-num">DIA 04-05</div>
-              <div className="step-icon">🧪</div>
+            <div className="step">
+              <div className="step-num">03</div>
               <div className="step-title">Validação</div>
-              <div className="step-desc">
-                Você conversa com o agente, testa cenários reais e aprova. Ajustamos quantas vezes for necessário.
-              </div>
+              <p className="step-desc">Você conversa com o agente, testa cenários reais e aprova. Ajustamos quantas vezes for necessário.</p>
             </div>
-            <div className="step-card">
-              <div className="step-num">DIA 06-07</div>
-              <div className="step-icon">🚀</div>
+            <div className="step">
+              <div className="step-num">04</div>
               <div className="step-title">Ativação</div>
-              <div className="step-desc">
-                Conectado ao seu WhatsApp e ao tráfego. Dashboard ativo. Agente operando e você no controle.
-              </div>
+              <p className="step-desc">Conectado ao seu WhatsApp e ao tráfego. Dashboard ativo. Agente operando e você no controle.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FEATURES */}
-      <section style={{ padding: '100px 40px', background: 'var(--surface)' }}>
+      <section className="features" id="recursos">
         <div className="container">
           <div className="section-label">// o que o agente faz</div>
-          <h2 className="section-title">
-            Mais que atendimento.<br />É um vendedor que nunca sai.
-          </h2>
+          <h2 className="section-title">Mais que atendimento.<br />É um vendedor que nunca sai.</h2>
+
           <div className="features-grid">
-            {[
-              { icon: '🕐', title: 'Atendimento 24/7', desc: 'Resposta em menos de 5 segundos, a qualquer hora. Enquanto seus concorrentes dormem, seu agente está fechando o próximo cliente.' },
-              { icon: '🎯', title: 'Qualificação automática', desc: 'O agente conduz a conversa para entender intenção, urgência e capacidade de compra. Sua equipe recebe só quem está pronto para fechar.' },
-              { icon: '📅', title: 'Agendamento direto', desc: 'Coleta os dados, confirma o horário e registra o agendamento — tudo na conversa, sem formulário, sem link externo, sem atrito.' },
-              { icon: '🔗', title: 'WhatsApp nativo', desc: 'Opera no WhatsApp que seus clientes já usam. Sem apps novos, sem fricção, sem aprendizado.' },
-              { icon: '📊', title: 'Você controla tudo pelo dashboard', desc: 'Acompanhe conversas em tempo real, assuma o atendimento quando quiser, veja leads qualificados e métricas de uso — tudo em um painel exclusivo. Quando necessário, o agente transfere para humano com o resumo completo da conversa. Nenhuma informação se perde.' },
-              { icon: '✏️', title: 'Atualização simples', desc: 'Treinado com PDFs, links, textos e scripts do seu negócio. Não chuta, não inventa. Responde com base no que você ensinou.' },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="feature-card">
-                <span className="feature-icon">{icon}</span>
-                <div className="feature-title">{title}</div>
-                <div className="feature-desc">{desc}</div>
+            <div className="feature-card">
+              <span className="feature-icon">⚡</span>
+              <div className="feature-title">Resposta em segundos</div>
+              <p className="feature-desc">Resposta em menos de 5 segundos, a qualquer hora. Enquanto seus concorrentes dormem, seu agente está fechando o próximo cliente.</p>
+              <span className="feature-tag">tempo médio: 2s</span>
+            </div>
+            <div className="feature-card">
+              <span className="feature-icon">🎯</span>
+              <div className="feature-title">Filtra quem tem interesse real</div>
+              <p className="feature-desc">O agente conduz a conversa para entender intenção, urgência e capacidade de compra. Sua equipe recebe só quem está pronto para fechar.</p>
+              <span className="feature-tag">contatos filtrados</span>
+            </div>
+            <div className="feature-card">
+              <span className="feature-icon">📅</span>
+              <div className="feature-title">Agendamento automático</div>
+              <p className="feature-desc">Coleta os dados, confirma o horário e registra o agendamento. Tudo na conversa, sem formulário, sem link externo, sem atrito.</p>
+              <span className="feature-tag">agenda 24/7</span>
+            </div>
+            <div className="feature-card">
+              <span className="feature-icon">🧠</span>
+              <div className="feature-title">Treinado with seus dados</div>
+              <p className="feature-desc">Treinado com PDFs, links, textos e scripts do seu negócio. Não chuta, não inventa. Responde com base no que você ensinou.</p>
+              <span className="feature-tag">IA personalizada</span>
+            </div>
+            <div className="feature-card big">
+              <div>
+                <span className="feature-icon">👤</span>
+                <div className="feature-title">Você controla tudo pelo dashboard</div>
+                <p className="feature-desc">Acompanhe conversas em tempo real, assuma o atendimento quando quiser, veja quem tem interesse real e métricas de uso. Quando necessário, o agente transfere para humano com o resumo completo da conversa. Nenhuma informação se perde.</p>
+                <span className="feature-tag">transferência inteligente</span>
+              </div>
+              <div style={{ background: 'var(--surface2)', borderRadius: '12px', padding: '24px', border: '1px solid var(--border)' }}>
+                <div style={{ fontFamily: 'var(--font-mono)', fontSize: '0.8rem', color: 'var(--green)', marginBottom: '16px' }}>→ transferindo para humano</div>
+                <div style={{ fontSize: '0.85rem', color: 'var(--muted2)', lineHeight: '1.6' }}>
+                  <strong style={{ color: 'var(--text)', display: 'block', marginBottom: '8px' }}>Resumo da conversa:</strong>
+                  Nome: João Silva<br />
+                  Interesse: Plano Premium<br />
+                  Objeção: Quer parcelamento<br />
+                  Temperatura: 🔥 Alta<br />
+                  <span style={{ color: 'var(--green)', marginTop: '8px', display: 'block' }}>✓ Pronto para fechar</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="niches" id="nichos">
+        <div className="container">
+          <div className="niches-header">
+            <div>
+              <div className="section-label">// onde já funciona</div>
+              <h2 className="section-title">Treinado para<br />o seu mercado.</h2>
+            </div>
+            <p className="section-sub" style={{ maxWidth: '320px' }}>Cada nicho tem objeções, linguagem e fluxo diferentes. O agente é configurado para isso, não é template genérico.</p>
+          </div>
+          <div className="niches-grid">
+            <div className="niche-card">
+              <span className="niche-emoji">🏥</span>
+              <div className="niche-name">Clínicas e Consultórios</div>
+              <p className="niche-desc">Agenda consultas, informa convênios, responde dúvidas de procedimentos e capta dados do paciente.</p>
+              <span className="niche-result">agenda lotada 24/7</span>
+            </div>
+            <div className="niche-card">
+              <span className="niche-emoji">💪</span>
+              <div className="niche-name">Academias e Estúdios</div>
+              <p className="niche-desc">Apresenta planos, agenda avaliações, responde sobre modalidades e faz follow-up de matrículas.</p>
+              <span className="niche-result">mais matrículas</span>
+            </div>
+            <div className="niche-card">
+              <span className="niche-emoji">🏠</span>
+              <div className="niche-name">Imobiliárias</div>
+              <p className="niche-desc">Qualifica comprador vs. locatário, envia imóveis, agenda visitas e coleta dados para o corretor.</p>
+              <span className="niche-result">clientes qualificados</span>
+            </div>
+            <div className="niche-card">
+              <span className="niche-emoji">🎓</span>
+              <div className="niche-name">Infoprodutores</div>
+              <p className="niche-desc">Tira dúvidas sobre o produto, quebra objeções, envia link de compra e faz follow-up automático.</p>
+              <span className="niche-result">mais vendas</span>
+            </div>
+            <div className="niche-card">
+              <span className="niche-emoji">⚖️</span>
+              <div className="niche-name">Escritórios e Advogados</div>
+              <p className="niche-desc">Faz triagem do caso, coleta documentos necessários e agenda consulta com o advogado.</p>
+              <span className="niche-result">triagem automática</span>
+            </div>
+            <div className="niche-card">
+              <span className="niche-emoji">🍕</span>
+              <div className="niche-name">Restaurantes e Food</div>
+              <p className="niche-desc">Recebe pedidos, informa cardápio e preços, confirma reservas e responde dúvidas de entrega.</p>
+              <span className="niche-result">sem fila no WA</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="proof" id="depoimentos">
+        <div className="container">
+          <div className="proof-header">
+            <div className="section-label">// resultados reais</div>
+            <h2 className="section-title">Não é promessa.<br />É o que já aconteceu.</h2>
+          </div>
+          <div className="testimonials">
+            <div className="testimonial">
+              <div className="testimonial-stars">★★★★★</div>
+              <p className="testimonial-text">"Na primeira semana o agente já agendou 11 consultas fora do horário comercial. Pacientes que teriam ido para a concorrência."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">👩‍⚕️</div>
+                <div>
+                  <div className="author-name">Dra. Camila Sousa</div>
+                  <div className="author-role">Dermatologista · SP</div>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial">
+              <div className="testimonial-stars">★★★★★</div>
+              <p className="testimonial-text">"Minha equipe de vendas parou de perder tempo com perguntas básicas. O agente filtra e entrega só quem quer comprar de verdade."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">👨‍💼</div>
+                <div>
+                  <div className="author-name">Rodrigo Alves</div>
+                  <div className="author-role">Infoprodutor · RJ</div>
+                </div>
+              </div>
+            </div>
+            <div className="testimonial">
+              <div className="testimonial-stars">★★★★★</div>
+              <p className="testimonial-text">"Achei que ia parecer robótico. Meus clientes elogiam o atendimento pensando que é humano. O resultado falou por si."</p>
+              <div className="testimonial-author">
+                <div className="author-avatar">👩‍💼</div>
+                <div>
+                  <div className="author-name">Fernanda Lima</div>
+                  <div className="author-role">Academia FitLife · BH</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="faq" id="faq">
+        <div className="container">
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <div className="section-label">// dúvidas</div>
+            <h2 className="section-title">Perguntas frequentes</h2>
+          </div>
+          <div className="faq-grid">
+            {faqs.map((faq, i) => (
+              <div key={i} className="faq-item" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
+                <div className="faq-q">{faq.q}</div>
+                {openFaq === i && <p className="faq-a">{faq.a}</p>}
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
-      <section id="faq" style={{ padding: '100px 40px' }}>
-        <div className="container">
-          <div className="section-label">// dúvidas</div>
-          <h2 className="section-title">Perguntas frequentes.</h2>
-          <div className="faq-list">
-            {faqs.map((faq, i) => {
-              const isOpen = openFaq === i
-              return (
-                <div key={i} className="faq-item" data-open={isOpen ? 'true' : 'false'}>
-                  <button
-                    className="faq-question"
-                    onClick={() => setOpenFaq(isOpen ? null : i)}
-                  >
-                    {faq.q}
-                    <i className="faq-chevron">+</i>
-                  </button>
-                  {isOpen && <div className="faq-answer">{faq.a}</div>}
-                </div>
-              )
-            })}
-          </div>
-        </div>
-      </section>
+      <section className="cta-final">
+        <div className="cta-terminal">agente.deploy --status=pronto --prazo=7dias</div>
+        <h2 className="cta-title">
+          Pronto para parar<br />
+          de perder clientes<br />
+          <span style={{ color: 'var(--green)' }}>por demora?</span>
+        </h2>
+        <p className="cta-sub">
+          Em até 7 dias úteis seu agente está treinado, validado e operando. Fale agora e entenda como funciona para o seu negócio.
+        </p>
 
-      {/* CTA FINAL + FORMULÁRIO */}
-      <section id="contato" className="cta-final">
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div className="section-label">// comece agora</div>
-          <h2>
-            Pronto para parar<br />de perder leads<br /><span style={{ color: "var(--green)" }}>para a demora?</span>
-          </h2>
-          <p>
-            Em até 7 dias úteis seu agente está treinado, validado e operando. Preencha abaixo e entenda como funciona para o seu negócio específico.
-          </p>
-
-          <form className="lead-form-card" onSubmit={handleSubmit} noValidate>
-            {formStatus === 'error' && (
-              <div className="form-error">
-                Algo deu errado. Tente novamente ou fale pelo WhatsApp.
-              </div>
-            )}
-
+        <div className="cta-actions">
+          <form onSubmit={handleSubmit} className="cta-form">
             <div className="form-group">
               <label className="form-label" htmlFor="lead-name">Nome completo</label>
               <input
@@ -567,23 +615,20 @@ export default function LandingPage() {
 
             <p className="form-privacy">✓ Sem spam · Seus dados estão seguros</p>
           </form>
-
-          <div className="cta-guarantees" style={{ marginTop: '32px' }}>
-            ✓ Processo com etapas claras &nbsp;·&nbsp; ✓ Você aprova antes de ativar &nbsp;·&nbsp; ✓ Ativo em até 7 dias úteis
-          </div>
         </div>
+
+        <p className="cta-guarantee">✓ Processo com etapas claras &nbsp;·&nbsp; ✓ Você aprova antes de ativar &nbsp;·&nbsp; ✓ Ativo em até 7 dias úteis</p>
       </section>
 
-      {/* FOOTER */}
       <footer>
-        <Link href="#" className="footer-logo" style={{ textDecoration: 'none' }}>
-          Agente<span>24horas</span>
-        </Link>
-        <div style={{ display: 'flex', gap: '24px', fontSize: '0.8rem' }}>
-          <Link href="/termos" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Termos de Uso</Link>
-          <Link href="/privacidade" style={{ color: 'var(--muted)', textDecoration: 'none' }}>Política de Privacidade</Link>
+        <div className="footer-inner">
+          <div className="footer-copy">© 2025 Agente24Horas · Todos os direitos reservados</div>
+          <div className="footer-links">
+            <Link href="/privacidade">Privacidade</Link>
+            <Link href="/termos">Termos</Link>
+            <a href={WHATSAPP}>Contato</a>
+          </div>
         </div>
-        <div className="footer-copy">© 2026 Agente24horas · Todos os direitos reservados</div>
       </footer>
     </>
   )
