@@ -4,7 +4,7 @@ import { useState, useEffect, FormEvent } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
-const WHATSAPP = 'https://wa.me/SEU_NUMERO'
+
 
 const COUNTRIES = [
   { ddi: '+55', flag: '🇧🇷', iso: 'BR' },
@@ -113,16 +113,6 @@ export default function LandingPage() {
 
   return (
     <>
-      <nav>
-        <Link href="/" className="nav-logo">Agente<span>24h</span></Link>
-        <ul className="nav-links">
-          <li><a href="#como-funciona">Como funciona</a></li>
-          <li><a href="#nichos">Nichos</a></li>
-          <li><a href="#faq">FAQ</a></li>
-        </ul>
-        <a href={WHATSAPP} className="nav-cta">Falar Agora →</a>
-      </nav>
-
       <section className="hero">
         <div className="hero-glow"></div>
         <div className="hero-glow2"></div>
@@ -142,7 +132,7 @@ export default function LandingPage() {
               Um agente de IA treinado com os dados do seu negócio. Ele lê o contexto, conduz a conversa e filtra quem tem interesse real — sem fluxo fixo, sem botões, sem "não entendi". Ativo em até 7 dias úteis.
             </p>
             <div className="hero-actions">
-              <a href={WHATSAPP} className="btn-primary">
+              <a href="#lead-form" className="btn-primary">
                 <span>💬</span> Quero meu agente agora
               </a>
               <a href="#como-funciona" className="btn-secondary">
@@ -332,7 +322,7 @@ export default function LandingPage() {
           </div>
 
           <div style={{ textAlign: 'center', marginTop: '52px' }}>
-            <a href={WHATSAPP} className="btn-primary"><span>🧠</span> Quero um agente, não um chatbot</a>
+            <a href="#lead-form" className="btn-primary"><span>🧠</span> Quero um agente, não um chatbot</a>
           </div>
         </div>
       </section>
@@ -533,7 +523,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="cta-final">
+      <section className="cta-final" id="lead-form">
         <div className="cta-terminal">agente.deploy --status=pronto --prazo=7dias</div>
         <h2 className="cta-title">
           Pronto para parar de perder clientes <span style={{ color: 'var(--green)' }}>por demora?</span>
@@ -624,7 +614,7 @@ export default function LandingPage() {
           <div className="footer-links">
             <Link href="/privacidade">Privacidade</Link>
             <Link href="/termos">Termos</Link>
-            <a href={WHATSAPP}>Contato</a>
+            <a href="#lead-form">Contato</a>
           </div>
         </div>
       </footer>

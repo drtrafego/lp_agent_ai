@@ -1,18 +1,8 @@
 import Link from 'next/link'
 
 export default function Termos() {
-    const WHATSAPP = 'https://wa.me/SEU_NUMERO'
-
     return (
         <>
-            <nav>
-                <Link href="/" className="nav-logo">Agente<span>24h</span></Link>
-                <div className="nav-links">
-                    <Link href="/">Voltar</Link>
-                </div>
-                <a href={WHATSAPP} className="nav-cta">Falar Agora →</a>
-            </nav>
-
             <div className="legal-page">
                 <div className="legal-content">
                     <h1>Termos de Uso</h1>
@@ -68,7 +58,7 @@ export default function Termos() {
                     <div className="footer-links">
                         <Link href="/privacidade">Privacidade</Link>
                         <Link href="/termos">Termos</Link>
-                        <a href={WHATSAPP}>Contato</a>
+                        <Link href="/#lead-form">Contato</Link>
                     </div>
                 </div>
             </footer>
