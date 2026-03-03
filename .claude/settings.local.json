@@ -20,7 +20,9 @@
       "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_projects",
       "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_deployments",
       "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__get_project",
-      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__web_fetch_vercel_url"
+      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__web_fetch_vercel_url",
+      "WebFetch(domain:agente24horas.vercel.app)",
+      "Bash(git add src/app/layout.tsx)"
     ]
   }
 }

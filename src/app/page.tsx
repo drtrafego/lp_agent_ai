@@ -220,12 +220,10 @@ export default function LandingPage() {
           <span className="logos-label">Implantado em</span>
           <div className="logos-list">
             <span className="logo-tag">🏥 Clínicas</span>
-            <span className="logo-tag">💪 Academias</span>
             <span className="logo-tag">🏠 Imobiliárias</span>
             <span className="logo-tag">🎓 Infoprodutores</span>
             <span className="logo-tag">🍕 Restaurantes</span>
             <span className="logo-tag">⚖️ Escritórios</span>
-            <span className="logo-tag">+ qualquer negócio</span>
           </div>
         </div>
       </div>
