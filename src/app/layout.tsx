@@ -22,11 +22,11 @@ const instrumentSans = Instrument_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'BilderAI — Seu Atendimento no WhatsApp, 24h por Dia',
+  title: 'Agente24horas, Seu Atendimento no WhatsApp, 24h por Dia',
   description:
     'Agentes de IA que atendem, qualificam e vendem pelo WhatsApp. Configurado em 7 dias úteis, rodando 24/7.',
   openGraph: {
-    title: 'BilderAI — Agentes de IA para WhatsApp',
+    title: 'Agente24horas, Agentes de IA para WhatsApp',
     description: 'Nunca mais perca um lead por demora no atendimento.',
     type: 'website',
   },
@@ -38,23 +38,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <head>
-        {/* ── Google Tag Manager (head) — o mais alto possível ── */}
+        {/* ── Google Tag Manager (head) ── */}
         <Script id="gtm-head" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PRWVDWL5');`}
+})(window,document,'script','dataLayer','GTM-TDFSWG2H');`}
         </Script>
       </head>
 
       <body
         className={`${syne.variable} ${jetbrainsMono.variable} ${instrumentSans.variable}`}
       >
-        {/* ── Google Tag Manager (noscript) — imediatamente após <body> ── */}
+        {/* ── Google Tag Manager (noscript) ── */}
         <noscript>
           <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-PRWVDWL5"
+            src="https://www.googletagmanager.com/ns.html?id=GTM-TDFSWG2H"
             height="0"
             width="0"
             style={{ display: 'none', visibility: 'hidden' }}
