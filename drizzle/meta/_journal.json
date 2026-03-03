@@ -1,0 +1,13 @@
+{
+  "version": "6",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1772549188078,
+      "tag": "0000_natural_war_machine",
+      "breakpoints": true
+    }
+  ]
+}

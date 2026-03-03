@@ -7,24 +7,24 @@
 import nodemailer from 'nodemailer'
 
 export interface LeadEmailPayload {
-  leadId:       number | string
-  name:         string
-  email:        string
-  whatsapp:     string
-  utm_source?:  string
-  utm_medium?:  string
-  utm_campaign?:string
-  utm_term?:    string
+  leadId: number | string
+  name: string
+  email: string
+  whatsapp: string
+  utm_source?: string
+  utm_medium?: string
+  utm_campaign?: string
+  utm_term?: string
   utm_content?: string
-  created_at?:  Date
+  created_at?: string | Date
 }
 
 // ─── Cria o transporter (reutilizável) ───────────────────
 
 function createTransporter() {
   return nodemailer.createTransport({
-    host:   process.env.EMAIL_HOST,
-    port:   Number(process.env.EMAIL_PORT ?? 587),
+    host: process.env.EMAIL_HOST,
+    port: Number(process.env.EMAIL_PORT ?? 587),
     secure: process.env.EMAIL_PORT === '465',
     auth: {
       user: process.env.EMAIL_USER,
@@ -37,7 +37,7 @@ function createTransporter() {
 
 function buildHtml(lead: LeadEmailPayload): string {
   const whatsappClean = lead.whatsapp.replace(/\D/g, '')
-  const whatsappLink  = `https://wa.me/${whatsappClean}`
+  const whatsappLink = `https://wa.me/${whatsappClean}`
   const date = (lead.created_at ?? new Date()).toLocaleString('pt-BR', {
     timeZone: 'America/Sao_Paulo',
     dateStyle: 'short',
@@ -45,11 +45,11 @@ function buildHtml(lead: LeadEmailPayload): string {
   })
 
   const utmRows = [
-    ['Fonte (utm_source)',   lead.utm_source],
-    ['Mídia (utm_medium)',   lead.utm_medium],
-    ['Campanha',             lead.utm_campaign],
-    ['Termo',                lead.utm_term],
-    ['Conteúdo',             lead.utm_content],
+    ['Fonte (utm_source)', lead.utm_source],
+    ['Mídia (utm_medium)', lead.utm_medium],
+    ['Campanha', lead.utm_campaign],
+    ['Termo', lead.utm_term],
+    ['Conteúdo', lead.utm_content],
   ]
     .filter(([, v]) => v)
     .map(([label, value]) => `
@@ -160,7 +160,7 @@ function buildHtml(lead: LeadEmailPayload): string {
 export async function sendLeadEmail(payload: LeadEmailPayload): Promise<void> {
   const user = process.env.EMAIL_USER
   const pass = process.env.EMAIL_PASS
-  const to   = process.env.EMAIL_TO
+  const to = process.env.EMAIL_TO
 
   if (!user || !pass || !to) {
     console.warn('[Email] EMAIL_USER, EMAIL_PASS ou EMAIL_TO ausente — e-mail ignorado.')
@@ -172,10 +172,10 @@ export async function sendLeadEmail(payload: LeadEmailPayload): Promise<void> {
     const toList = to.split(',').map(e => e.trim()).filter(Boolean)
 
     await transporter.sendMail({
-      from:    `"BilderAI Leads" <${user}>`,
-      to:      toList.join(', '),
+      from: `"BilderAI Leads" <${user}>`,
+      to: toList.join(', '),
       subject: `🔥 Novo Lead: ${payload.name}`,
-      html:    buildHtml(payload),
+      html: buildHtml(payload),
     })
 
     console.log('[Email] Notificação enviada — leadId:', payload.leadId, '— para:', toList)

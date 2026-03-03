@@ -19,15 +19,15 @@ import { sendLeadEmail } from '@/lib/email-server'
 // ─── Schema de validação ─────────────────────────────────
 
 const ContactSchema = z.object({
-  name:     z.string().min(2, 'Nome muito curto').max(120),
-  email:    z.string().email('E-mail inválido'),
+  name: z.string().min(2, 'Nome muito curto').max(120),
+  email: z.string().email('E-mail inválido'),
   whatsapp: z.string().min(10, 'Telefone inválido').max(20),
   // UTMs opcionais — chegam como query params na URL da landing page
-  utm_source:   z.string().optional(),
-  utm_medium:   z.string().optional(),
+  utm_source: z.string().optional(),
+  utm_medium: z.string().optional(),
   utm_campaign: z.string().optional(),
-  utm_term:     z.string().optional(),
-  utm_content:  z.string().optional(),
+  utm_term: z.string().optional(),
+  utm_content: z.string().optional(),
 })
 
 type ContactInput = z.infer<typeof ContactSchema>
@@ -75,7 +75,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   const userAgent = req.headers.get('user-agent') ?? undefined
 
   const cookieHeader = req.headers.get('cookie') ?? ''
-  const parseCookie  = (name: string): string | undefined => {
+  const parseCookie = (name: string): string | undefined => {
     const match = cookieHeader.match(new RegExp(`(?:^|; )${name}=([^;]*)`))
     return match ? decodeURIComponent(match[1]) : undefined
   }
@@ -97,14 +97,16 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   try {
     const [row] = await withTimeout(
       getDb().insert(leads).values({
-        name:         input.name,
-        email:        input.email,
-        whatsapp:     input.whatsapp,
-        utm_source:   input.utm_source,
-        utm_medium:   input.utm_medium,
+        name: input.name,
+        email: input.email,
+        whatsapp: input.whatsapp,
+        utm_source: input.utm_source,
+        utm_medium: input.utm_medium,
         utm_campaign: input.utm_campaign,
-        utm_term:     input.utm_term,
-        utm_content:  input.utm_content,
+        utm_term: input.utm_term,
+        utm_content: input.utm_content,
+        organization_id: process.env.ORGANIZATION_ID!,
+        status: 'novo',
       }).returning({ id: leads.id }),
       5_000,
     )
@@ -126,8 +128,8 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
   void Promise.all([
     sendMetaCAPI({
       leadId,
-      name:     input.name,
-      email:    input.email,
+      name: input.name,
+      email: input.email,
       whatsapp: input.whatsapp,
       ip,
       userAgent,
@@ -146,15 +148,15 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     sendLeadEmail({
       leadId,
-      name:         input.name,
-      email:        input.email,
-      whatsapp:     input.whatsapp,
-      utm_source:   input.utm_source,
-      utm_medium:   input.utm_medium,
+      name: input.name,
+      email: input.email,
+      whatsapp: input.whatsapp,
+      utm_source: input.utm_source,
+      utm_medium: input.utm_medium,
       utm_campaign: input.utm_campaign,
-      utm_term:     input.utm_term,
-      utm_content:  input.utm_content,
-      created_at:   savedAt,
+      utm_term: input.utm_term,
+      utm_content: input.utm_content,
+      created_at: savedAt.toISOString(),
     }).catch((err) => console.error('[contact] Erro Email background:', err)),
   ])
 
