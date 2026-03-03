@@ -62,7 +62,7 @@ const faqs = [
 
 export default function LandingPage() {
   const router = useRouter()
-  const [openFaq, setOpenFaq] = useState<number | null>(0)
+  const [openFaq, setOpenFaq] = useState<number | null>(null)
   const [ddi, setDdi] = useState('+55')
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'error'>('idle')
@@ -114,7 +114,7 @@ export default function LandingPage() {
   return (
     <>
       <nav>
-        <div className="nav-logo">Agente<span>24h</span></div>
+        <Link href="/" className="nav-logo">Agente<span>24h</span></Link>
         <ul className="nav-links">
           <li><a href="#como-funciona">Como funciona</a></li>
           <li><a href="#nichos">Nichos</a></li>
@@ -282,7 +282,7 @@ export default function LandingPage() {
               </div>
               <div className="comp-row">
                 <div className="comp-item comp-item-before">❌ Custo alto com atendentes</div>
-                <div className="comp-item comp-item-after text-green-500 font-bold">✅ Custo fixo e previsível</div>
+                <div className="comp-item comp-item-after">✅ Custo fixo e previsível</div>
               </div>
             </div>
           </div>
@@ -358,7 +358,7 @@ export default function LandingPage() {
             <div className="step">
               <div className="step-num">03</div>
               <div className="step-title">Validação</div>
-              <p className="step-desc">Você conversa com o agente, testa cenários reais e aprova. Ajustamos quantas vezes for necessário.</p>
+              <p className="step-desc">Você conversa com o agente, testa cenários reels e aprova. Ajustamos quantas vezes for necessário.</p>
             </div>
             <div className="step">
               <div className="step-num">04</div>
@@ -395,7 +395,7 @@ export default function LandingPage() {
             </div>
             <div className="feature-card">
               <span className="feature-icon">🧠</span>
-              <div className="feature-title">Treinado with seus dados</div>
+              <div className="feature-title">Treinado com seus dados</div>
               <p className="feature-desc">Treinado com PDFs, links, textos e scripts do seu negócio. Não chuta, não inventa. Responde com base no que você ensinou.</p>
               <span className="feature-tag">IA personalizada</span>
             </div>
@@ -545,7 +545,7 @@ export default function LandingPage() {
         </p>
 
         <div className="cta-actions">
-          <form onSubmit={handleSubmit} className="cta-form">
+          <form onSubmit={handleSubmit} className="lead-form-card">
             <div className="form-group">
               <label className="form-label" htmlFor="lead-name">Nome completo</label>
               <input
