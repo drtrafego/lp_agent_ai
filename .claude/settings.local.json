@@ -16,7 +16,9 @@
       "Bash(git add next.config.mjs)",
       "Bash(git add src/app/api/contact/route.ts src/lib/db.ts)",
       "Bash(git push origin main)",
-      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_teams"
+      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_teams",
+      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_projects",
+      "mcp__3ecf8441-509e-4186-8d57-ffe3333151ba__list_deployments"
     ]
   }
 }
