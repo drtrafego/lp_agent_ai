@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fsck)",
+      "Bash(git add .)",
+      "Bash(git rm --cached .claude/settings.local.json)",
+      "Bash(git commit:*)",
+      "Bash(git rm --cached -f .claude/settings.local.json)",
+      "Bash(git branch -M main)",
+      "Bash(git push -u origin main)",
+      "Bash(npm install nodemailer @types/nodemailer google-auth-library)",
+      "Bash(node -e \":*)",
+      "Bash(git add src/lib/email-server.ts src/lib/schema.ts src/app/api/contact/route.ts src/app/page.tsx package.json package-lock.json)",
+      "Bash(git push)",
+      "Bash(git rm next.config.ts)",
+      "Bash(git add next.config.mjs)",
+      "Bash(git add src/app/api/contact/route.ts src/lib/db.ts)",
+      "Bash(git push origin main)"
+    ]
+  }
+}
