@@ -25,7 +25,7 @@ export default function Termos() {
 
                         <h2>3. Responsabilidades do Cliente</h2>
                         <p>
-                            O cliente é responsável por fornecer informações precisas, claras e legais para o treinamento do agente. O Agente24h não se responsabiliza pelas interações decorrentes de informações falsas ou dúbias repassadas para a inteligência artificial. O uso da plataforma do WhatsApp Business deve cumprir as diretrizes da Meta, sendo o cliente o único responsável em caso de bloqueios decorrentes de uso indevido (ex: envio de spam).
+                            O cliente é responsável por fornecer informações precisas, claras e legais para o treinamento do agente. O Agente24h não se responsabiliza pelas interações decorrentes de informações falsas ou dúbias repassadas para a inteligência artificial. O uso da plataforma do WhatsApp Business deve cumprir as diretrizes da Meta, sendo o cliente o único responsável em caso de bloqueios decorrentes de uso indevido (ex.: envio de spam).
                         </p>
 
                         <h2>4. Pagamentos e Garantias</h2>

@@ -32,7 +32,7 @@ const COUNTRIES = [
 const faqs = [
   {
     q: 'É realmente uma IA ou tem pessoas respondendo?',
-    a: 'É 100% IA. Nenhuma pessoa responde as mensagens — o agente usa modelos de linguagem avançados treinados com o conteúdo do seu negócio. O resultado é uma conversa natural, personalizada e disponível a qualquer hora.',
+    a: 'É 100% IA. Nenhuma pessoa responde as mensagens. O agente usa modelos de linguagem avançados treinados com o conteúdo do seu negócio. O resultado é uma conversa natural, personalizada e disponível a qualquer hora.',
   },
   {
     q: 'Em quanto tempo o agente fica pronto?',
@@ -52,7 +52,7 @@ const faqs = [
   },
   {
     q: 'Quanto custa?',
-    a: 'Depende do porte do negócio e das funcionalidades necessárias. Fale com a gente pelo WhatsApp e apresentamos os valores após entender o seu caso — sem enrolação.',
+    a: 'Depende do porte do negócio e das funcionalidades necessárias. Fale com a gente pelo WhatsApp e apresentamos os valores após entender o seu caso, sem enrolação.',
   },
   {
     q: 'Precisa de aprovação da Meta?',
@@ -66,6 +66,23 @@ export default function LandingPage() {
   const [ddi, setDdi] = useState('+55')
   const [formData, setFormData] = useState({ name: '', email: '', phone: '' })
   const [formStatus, setFormStatus] = useState<'idle' | 'loading' | 'error'>('idle')
+  const [isDdiOpen, setIsDdiOpen] = useState(false)
+
+  // Fecha dropdown ao clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement
+      if (!target.closest('.custom-ddi-container')) {
+        setIsDdiOpen(false)
+      }
+    }
+    if (isDdiOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isDdiOpen])
 
   // Detecta DDI pelo IP do visitante
   useEffect(() => {
@@ -129,7 +146,7 @@ export default function LandingPage() {
               <span className="dim">por demora.</span>
             </h1>
             <p className="hero-sub">
-              Um agente de IA treinado com os dados do seu negócio. Ele lê o contexto, conduz a conversa e filtra quem tem interesse real — sem fluxo fixo, sem botões, sem "não entendi". Ativo em até 7 dias úteis.
+              Um agente de IA treinado com os dados do seu negócio. Ele lê o contexto, conduz a conversa e filtra quem tem interesse real: sem fluxo fixo, sem botões, sem "não entendi". Ativo em até 7 dias úteis.
             </p>
             <div className="hero-actions">
               <a href="#lead-form" className="btn-primary">
@@ -348,7 +365,7 @@ export default function LandingPage() {
             <div className="step">
               <div className="step-num">03</div>
               <div className="step-title">Validação</div>
-              <p className="step-desc">Você conversa com o agente, testa cenários reels e aprova. Ajustamos quantas vezes for necessário.</p>
+              <p className="step-desc">Você conversa com o agente, testa cenários reais e aprova. Ajustamos quantas vezes for necessário.</p>
             </div>
             <div className="step">
               <div className="step-num">04</div>
@@ -567,19 +584,37 @@ export default function LandingPage() {
             <div className="form-group">
               <label className="form-label" htmlFor="lead-phone">WhatsApp</label>
               <div className="phone-wrapper">
-                <select
-                  className="ddi-select"
-                  value={ddi}
-                  onChange={e => setDdi(e.target.value)}
-                  disabled={formStatus === 'loading'}
-                  aria-label="Código do país"
-                >
-                  {COUNTRIES.map(c => (
-                    <option key={`${c.iso}-${c.ddi}`} value={c.ddi}>
-                      {c.flag} {c.ddi}
-                    </option>
-                  ))}
-                </select>
+                <div className="custom-ddi-container">
+                  <button
+                    type="button"
+                    className="ddi-toggle"
+                    onClick={() => setIsDdiOpen(!isDdiOpen)}
+                    disabled={formStatus === 'loading'}
+                  >
+                    <span className="current-flag">{COUNTRIES.find(c => c.ddi === ddi)?.flag}</span>
+                    <span className="current-ddi">{ddi}</span>
+                    <span className={`ddi-chevron ${isDdiOpen ? 'open' : ''}`}>▾</span>
+                  </button>
+
+                  {isDdiOpen && (
+                    <div className="ddi-dropdown">
+                      {COUNTRIES.map(c => (
+                        <div
+                          key={`${c.iso}-${c.ddi}`}
+                          className={`ddi-option ${ddi === c.ddi ? 'selected' : ''}`}
+                          onClick={() => {
+                            setDdi(c.ddi)
+                            setIsDdiOpen(false)
+                          }}
+                        >
+                          <span className="option-flag">{c.flag}</span>
+                          <span className="option-name">{c.iso}</span>
+                          <span className="option-ddi">{c.ddi}</span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <input
                   id="lead-phone"
                   type="tel"
@@ -610,7 +645,7 @@ export default function LandingPage() {
 
       <footer>
         <div className="footer-inner">
-          <div className="footer-copy">© 2025 Agente24Horas · Todos os direitos reservados</div>
+          <div className="footer-copy">© 2025 Agente24h · Todos os direitos reservados</div>
           <div className="footer-links">
             <Link href="/privacidade">Privacidade</Link>
             <Link href="/termos">Termos</Link>

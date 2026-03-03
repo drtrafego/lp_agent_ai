@@ -1639,21 +1639,95 @@ footer {
   /* Allow wrapping on very small screens */
 }
 
-.ddi-select {
+.custom-ddi-container {
+  position: relative;
+  min-width: 100px;
+}
+
+.ddi-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  padding: 0 10px;
-  font-size: 0.88rem;
+  padding: 12px 14px;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
   color: var(--text);
-  outline: none;
   cursor: pointer;
-  transition: border-color 0.2s;
-  width: 90px;
-  flex-shrink: 0;
+  width: 100%;
+  transition: all 0.2s;
+  height: 48px;
 }
 
-.ddi-select:focus {
+.ddi-toggle:hover:not(:disabled) {
+  border-color: rgba(0, 230, 118, 0.4);
+}
+
+.ddi-chevron {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-left: auto;
+  transition: transform 0.2s;
+}
+
+.ddi-chevron.open {
+  transform: rotate(180deg);
+}
+
+.current-flag {
+  font-size: 1.2rem;
+}
+
+.ddi-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 200px;
+  max-height: 280px;
+  overflow-y: auto;
+  background: var(--surface2);
+  border: 1px solid var(--border2);
+  border-radius: 12px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 8px;
+}
+
+.ddi-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ddi-option:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.ddi-option.selected {
+  background: var(--green-dim);
+  color: var(--green);
+}
+
+.option-flag {
+  font-size: 1.1rem;
+}
+
+.option-name {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--muted2);
+}
+
+.option-ddi {
+  font-size: 0.88rem;
   border-color: rgba(0, 230, 118, 0.4);
 }
 
