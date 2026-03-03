@@ -1688,7 +1688,14 @@ footer {
 }
 
 .current-flag {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.current-flag img {
+  border-radius: 2px;
+  display: block;
 }
 
 .ddi-dropdown {
@@ -1728,7 +1735,15 @@ footer {
 }
 
 .option-flag {
-  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.option-flag img {
+  border-radius: 2px;
+  display: block;
 }
 
 .option-name {

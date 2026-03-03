@@ -591,7 +591,13 @@ export default function LandingPage() {
                     onClick={() => setIsDdiOpen(!isDdiOpen)}
                     disabled={formStatus === 'loading'}
                   >
-                    <span className="current-flag">{COUNTRIES.find(c => c.ddi === ddi)?.flag}</span>
+                    <span className="current-flag">
+                      <img
+                        src={`https://flagcdn.com/w40/${COUNTRIES.find(c => c.ddi === ddi)?.iso.toLowerCase()}.png`}
+                        width="20"
+                        alt="flag"
+                      />
+                    </span>
                     <span className={`ddi-chevron ${isDdiOpen ? 'open' : ''}`}>▾</span>
                   </button>
 
@@ -606,7 +612,9 @@ export default function LandingPage() {
                             setIsDdiOpen(false)
                           }}
                         >
-                          <span className="option-flag">{c.flag}</span>
+                          <span className="option-flag">
+                            <img src={`https://flagcdn.com/w40/${c.iso.toLowerCase()}.png`} width="20" alt={c.iso} />
+                          </span>
                           <span className="option-name">{c.iso}</span>
                           <span className="option-ddi">{c.ddi}</span>
                         </div>
