@@ -1644,7 +1644,6 @@ footer {
   background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow: hidden;
   transition: border-color 0.2s;
 }
 
@@ -1671,6 +1670,7 @@ footer {
   cursor: pointer;
   height: 48px;
   transition: background 0.2s;
+  border-radius: 8px 0 0 8px;
 }
 
 .ddi-toggle:hover:not(:disabled) {
