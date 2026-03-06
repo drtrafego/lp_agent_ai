@@ -8,7 +8,8 @@ export default function ComparativoCusto() {
 
   return (
     <>
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
           --bg: #080b0f; --bg2: #0d1117; --surface: #111820; --surface2: #161e28;
@@ -236,7 +237,7 @@ export default function ComparativoCusto() {
                 <span className="accent">para perder clientes</span><br />
                 toda noite.
               </h1>
-              <p className="hero-sub">Seu atendente trabalha 8h por dia, tira férias, pede demissão. O lead que chega às 23h fica sem resposta — e compra do concorrente. Existe uma alternativa que custa menos e nunca dorme.</p>
+              <p className="hero-sub">Seu atendente trabalha 8h por dia, tira férias, pede demissão. O lead que chega às 23h fica sem resposta, e compra do concorrente. Existe uma alternativa que custa menos e nunca dorme.</p>
               <div className="hero-actions">
                 <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-primary"><span>💬</span> Quero substituir esse custo</a>
                 <a href="#custo" className="btn-secondary">Ver o cálculo completo ↓</a>
@@ -451,7 +452,7 @@ export default function ComparativoCusto() {
 
         <section className="cta-final">
           <div className="cta-glow"></div>
-          <div className="cta-terminal">agente.deploy --custo=menor --disponibilidade=24h --rescisao=nunca</div>
+          <div className="cta-terminal">agente.deploy(custo=menor, disponibilidade=24h, rescisao=nunca)</div>
           <h2 className="cta-title">
             Pare de pagar R$4.000/mês<br />por 8 horas de atendimento.<br />
             <span style={{ color: 'var(--green)' }}>Existe uma alternativa melhor.</span>

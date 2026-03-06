@@ -416,7 +416,7 @@ export default function AgenteIAPage() {
 
                 <section className="cta">
                     <div className="cta-bg"></div>
-                    <div className="cta-ey">agente.deploy --status=pronto --prazo=7dias</div>
+                    <div className="cta-ey">agente.deploy(status=pronto, prazo=7dias)</div>
                     <h2 className="cta-title">Pronto para parar<br />de perder clientes<br /><span className="grad">por demora?</span></h2>
                     <p className="cta-sub">Em até 7 dias úteis seu agente está treinado, validado e operando. Fale agora e entenda como funciona para o seu negócio específico.</p>
                     <div className="cta-btns"><a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="btn-grad" style={{ fontSize: '1.05rem', padding: '16px 38px' }}>💬 Falar agora no WhatsApp</a></div>
