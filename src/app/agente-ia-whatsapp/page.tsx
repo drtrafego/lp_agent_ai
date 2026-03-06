@@ -51,21 +51,21 @@ export default function AgenteIAPage() {
         .stat-label{font-size:0.78rem;color:var(--muted2);margin-top:2px}
         .phone-wrap{position:relative;display:flex;justify-content:center}
         .phone-card{background:rgba(255,255,255,0.04);border:1px solid rgba(168,85,247,0.2);border-radius:24px;overflow:hidden;width:300px;box-shadow:0 0 80px rgba(124,58,237,0.12),0 0 0 1px rgba(255,255,255,0.04)}
-        .phone-topbar{background:rgba(255,255,255,0.05);border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:10px}
+        .phone-topbar{background:#1a1625;border-bottom:1px solid var(--border);padding:14px 18px;display:flex;align-items:center;gap:10px}
         .phone-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple2),var(--blue));display:flex;align-items:center;justify-content:center;font-size:0.9rem}
         .phone-name{font-size:0.82rem;font-weight:600}
         .phone-online{font-size:0.68rem;color:#4ade80;font-family:var(--font-mono)}
-        .phone-msgs{padding:20px 16px;display:flex;flex-direction:column;gap:12px;background:rgba(0,0,0,0.4);min-height:320px;position:relative}
-        .msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:0.85rem;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
-        .msg-out{background:#2a2f35;color:#fff;align-self:flex-end;border-radius:14px 14px 2px 14px;border:1px solid rgba(255,255,255,0.1)}
-        .msg-in{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;align-self:flex-start;border-radius:14px 14px 14px 2px;border:1px solid rgba(168,85,247,0.4)}
+        .phone-msgs{padding:24px 16px;display:flex;flex-direction:column;gap:14px;background:#0f0a1a;min-height:360px;position:relative;z-index:2}
+        .msg{max-width:88%;padding:12px 16px;border-radius:16px;font-size:0.88rem;line-height:1.5;position:relative;z-index:3;box-shadow:0 4px 15px rgba(0,0,0,0.4)}
+        .msg-out{background:#2d283e;color:#ffffff !important;align-self:flex-end;border-radius:16px 16px 2px 16px;border:1px solid rgba(255,255,255,0.08)}
+        .msg-in{background:linear-gradient(135deg,#8b5cf6,#6366f1);color:#ffffff !important;align-self:flex-start;border-radius:16px 16px 16px 2px;border:1px solid rgba(168,85,247,0.4)}
         .msg-time{font-size:0.6rem;color:var(--muted);margin-top:3px;text-align:right;font-family:var(--font-mono)}
         .typing{align-self:flex-start;display:flex;gap:3px;padding:10px 14px;background:rgba(124,58,237,0.14);border-radius:12px;border:1px solid rgba(168,85,247,0.14)}
         .typing span{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:typ 1.2s infinite}
         .typing span:nth-child(2){animation-delay:0.2s}
         .typing span:nth-child(3){animation-delay:0.4s}
         @keyframes typ{0%,60%,100%{opacity:0.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-4px)}}
-        .phone-bottom{background:linear-gradient(135deg,rgba(74,222,128,0.12),rgba(59,130,246,0.08));border-top:1px solid rgba(74,222,128,0.12);padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:0.75rem;color:var(--text2)}
+        .phone-bottom{background:#0e1610;border-top:1px solid rgba(74,222,128,0.12);padding:11px 16px;display:flex;align-items:center;gap:8px;font-size:0.75rem;color:var(--text2)}
         .phone-bottom strong{color:#4ade80}
         .float-badge{position:absolute;top:-14px;right:-20px;background:linear-gradient(135deg,var(--purple2),var(--indigo));color:#fff;font-family:var(--font-mono);font-size:0.68rem;padding:6px 12px;border-radius:8px;box-shadow:0 4px 20px rgba(124,58,237,0.4)}
         .logos-bar{padding:18px 48px;z-index:1;position:relative;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,0.015)}
