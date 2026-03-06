@@ -72,7 +72,7 @@ function extractGaClientId(gaCookie: string): string {
  * @param payload  Dados do lead + identificadores de request
  */
 export async function sendMetaCAPI(payload: CAPIPayload): Promise<void> {
-  const pixelId    = process.env.FB_PIXEL_ID
+  const pixelId = process.env.FB_PIXEL_ID
   const accessToken = process.env.FB_ACCESS_TOKEN
 
   // Aborta silenciosamente se as credenciais não existirem
@@ -121,7 +121,7 @@ export async function sendMetaCAPI(payload: CAPIPayload): Promise<void> {
             // ln não enviado (frontend usa campo único de nome)
 
             // ── Metadados do dispositivo (texto claro) ───
-            ...(ip        && { client_ip_address: ip }),
+            ...(ip && { client_ip_address: ip }),
             ...(userAgent && { client_user_agent: userAgent }),
 
             // ── Cookies Meta (identificação do anúncio) ──
@@ -167,47 +167,37 @@ export async function sendMetaCAPI(payload: CAPIPayload): Promise<void> {
   }
 }
 
-// ─── 6. sendGA4Lead ──────────────────────────────────────
+// ─── 6. sendGA4Event (Generic) ───────────────────────────
 
 /**
- * Dispara um evento "generate_lead" via GA4 Measurement Protocol (server-side).
- * Permite rastrear a conversão mesmo sem JS no browser.
- * Falha silenciosamente se as env vars não estiverem configuradas.
- *
- * Credenciais necessárias:
- *   GA_MEASUREMENT_ID  → GA4 Measurement ID (G-XXXXXXXXXX)
- *   GA_API_SECRET      → gerado em: Admin → Data Streams → Measurement Protocol API secrets
- *
- * @param payload  Dados do request HTTP para enriquecer o evento
+ * Envia qualquer evento customizado para o GA4 via Measurement Protocol.
+ * 
+ * @param clientId ID do cliente GA4 (ex: do cookie _ga)
+ * @param eventName Nome do evento (ex: 'generate_lead', 'obrigado_page_view')
+ * @param params Parâmetros do evento
  */
-export async function sendGA4Lead(payload: GA4Payload): Promise<void> {
+export async function sendGA4Event(
+  clientId: string,
+  eventName: string,
+  params: Record<string, unknown> = {}
+): Promise<void> {
   const measurementId = process.env.GA_MEASUREMENT_ID
-  const apiSecret     = process.env.GA_API_SECRET
+  const apiSecret = process.env.GA_API_SECRET
 
   if (!measurementId || !apiSecret) {
-    console.warn('[GA4] GA_MEASUREMENT_ID ou GA_API_SECRET ausente — evento ignorado.')
+    console.warn(`[GA4] Measurement ID ou API Secret ausente — evento '${eventName}' ignorado.`)
     return
   }
 
   try {
-    const { leadId, gaCookie } = payload
-
-    // client_id: extraído do cookie _ga; fallback para ID do lead
-    const clientId = gaCookie
-      ? extractGaClientId(gaCookie)
-      : `lead_${String(leadId)}`
-
     const body = {
       client_id: clientId,
       events: [
         {
-          name: 'generate_lead',
+          name: eventName,
           params: {
-            currency:             'BRL',
-            value:                0,
-            lead_source:          'landing_page',
-            form_name:            'Lead BilderAI',
             engagement_time_msec: 1,
+            ...params,
           },
         },
       ],
@@ -221,15 +211,34 @@ export async function sendGA4Lead(payload: GA4Payload): Promise<void> {
       body: JSON.stringify(body),
     })
 
-    // GA4 Measurement Protocol retorna 204 em sucesso
     if (response.status !== 204 && !response.ok) {
-      console.error('[GA4] Erro na resposta:', response.status)
+      console.error(`[GA4] Erro na resposta GA4 (${eventName}):`, response.status)
       return
     }
 
-    console.log('[GA4] Evento generate_lead enviado — leadId:', leadId, '— client_id:', clientId)
+    console.log(`[GA4] Evento '${eventName}' enviado com sucesso. ClientId: ${clientId}`)
   } catch (err) {
-    // Isola qualquer erro para não derrubar outras integrações
-    console.error('[GA4] Falha inesperada (isolada):', err)
+    console.error(`[GA4] Falha inesperada ao enviar '${eventName}':`, err)
   }
+}
+
+// ─── 7. sendGA4Lead (Legacy/Helper) ──────────────────────
+
+/**
+ * Dispara um evento "generate_lead" via GA4 Measurement Protocol.
+ */
+export async function sendGA4Lead(payload: GA4Payload): Promise<void> {
+  const { leadId, gaCookie } = payload
+
+  // client_id: extraído do cookie _ga; fallback para ID do lead
+  const clientId = gaCookie
+    ? extractGaClientId(gaCookie)
+    : `lead_${String(leadId)}`
+
+  return sendGA4Event(clientId, 'generate_lead', {
+    currency: 'BRL',
+    value: 0,
+    lead_source: 'landing_page',
+    form_name: 'Lead BilderAI',
+  })
 }

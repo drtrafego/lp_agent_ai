@@ -32,8 +32,6 @@ function ConversionEvents() {
 
   useEffect(() => {
     // ── Meta Pixel: Lead ──────────────────────────────
-    // eventID deve coincidir com o event_id enviado no CAPI
-    // para que a Meta faça a deduplicação corretamente.
     if (typeof window.fbq === 'function') {
       window.fbq(
         'track',
@@ -43,10 +41,7 @@ function ConversionEvents() {
       )
     }
 
-    // ── GA4: generate_lead ────────────────────────────
-    // Método primário: dataLayer.push() — compatível com GTM.
-    // O GTM precisa ter um trigger de Custom Event "generate_lead"
-    // apontando para uma tag GA4 Event.
+    // ── GA4: generate_lead (Browser Layout/GTM) ───────
     window.dataLayer = window.dataLayer ?? []
     window.dataLayer.push({
       event: 'generate_lead',
@@ -56,15 +51,39 @@ function ConversionEvents() {
       form_name: 'Lead BilderAI',
     })
 
-    // Fallback: gtag() direto (caso GA4 esteja carregado fora do GTM)
-    if (typeof window.gtag === 'function') {
-      window.gtag('event', 'generate_lead', {
-        currency: 'BRL',
-        value: 0,
-        lead_source: 'landing_page',
-        form_name: 'Lead BilderAI',
-      })
+    // ── GA4: Custom Conversion via API (Server-Side) ──
+    const trackServerSide = async () => {
+      try {
+        // Tenta extrair o ClientID do cookie _ga
+        const gaCookie = document.cookie
+          .split('; ')
+          .find((row) => row.startsWith('_ga='))
+          ?.split('=')[1]
+
+        if (gaCookie) {
+          // Extrai o ClientId puro (GA1.X.XXXXXXXXXX.XXXXXXXXXX -> XXXXXXXXXX.XXXXXXXXXX)
+          const parts = gaCookie.split('.')
+          const clientId = parts.length >= 4 ? `${parts[2]}.${parts[3]}` : gaCookie
+
+          await fetch('/api/tracking/ga4', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              clientId,
+              eventName: 'obrigado_page_view',
+              params: {
+                lead_id: leadId,
+                page_path: window.location.pathname,
+              }
+            }),
+          })
+        }
+      } catch (err) {
+        console.error('[GA4 API] Erro ao disparar conversão:', err)
+      }
     }
+
+    trackServerSide()
   }, [leadId])
 
   return null
