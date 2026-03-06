@@ -55,10 +55,10 @@ export default function AgenteIAPage() {
         .phone-av{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--purple2),var(--blue));display:flex;align-items:center;justify-content:center;font-size:0.9rem}
         .phone-name{font-size:0.82rem;font-weight:600}
         .phone-online{font-size:0.68rem;color:#4ade80;font-family:var(--font-mono)}
-        .phone-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:rgba(0,0,0,0.2)}
-        .msg{max-width:80%;padding:9px 13px;border-radius:12px;font-size:0.82rem;line-height:1.45}
-        .msg-out{background:rgba(255,255,255,0.12);color:#fff;align-self:flex-end;border-radius:12px 12px 2px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
-        .msg-in{background:linear-gradient(135deg,rgba(124,58,237,0.4),rgba(59,130,246,0.3));color:#fff;align-self:flex-start;border-radius:12px 12px 12px 2px;border:1px solid rgba(168,85,247,0.3);box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+        .phone-msgs{padding:20px 16px;display:flex;flex-direction:column;gap:12px;background:rgba(0,0,0,0.4);min-height:320px;position:relative}
+        .msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:0.85rem;line-height:1.5;box-shadow:0 4px 12px rgba(0,0,0,0.3)}
+        .msg-out{background:#2a2f35;color:#fff;align-self:flex-end;border-radius:14px 14px 2px 14px;border:1px solid rgba(255,255,255,0.1)}
+        .msg-in{background:linear-gradient(135deg,#7c3aed,#4f46e5);color:#fff;align-self:flex-start;border-radius:14px 14px 14px 2px;border:1px solid rgba(168,85,247,0.4)}
         .msg-time{font-size:0.6rem;color:var(--muted);margin-top:3px;text-align:right;font-family:var(--font-mono)}
         .typing{align-self:flex-start;display:flex;gap:3px;padding:10px 14px;background:rgba(124,58,237,0.14);border-radius:12px;border:1px solid rgba(168,85,247,0.14)}
         .typing span{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:typ 1.2s infinite}
