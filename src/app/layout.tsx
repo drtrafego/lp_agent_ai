@@ -38,7 +38,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-BR">
       <head>
-        {/* ── Google Tag Manager (head) ── */}
         <Script id="gtm-head" strategy="beforeInteractive">
           {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -75,7 +74,6 @@ fbq('track','PageView');`}
       <body
         className={`${syne.variable} ${jetbrainsMono.variable} ${instrumentSans.variable}`}
       >
-        {/* ── Google Tag Manager (noscript) ── */}
         <noscript>
           <iframe
             src="https://www.googletagmanager.com/ns.html?id=GTM-TDFSWG2H"
