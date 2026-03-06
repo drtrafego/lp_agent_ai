@@ -57,8 +57,8 @@ export default function AgenteIAPage() {
         .phone-online{font-size:0.68rem;color:#4ade80;font-family:var(--font-mono)}
         .phone-msgs{padding:16px;display:flex;flex-direction:column;gap:10px;background:rgba(0,0,0,0.2)}
         .msg{max-width:80%;padding:9px 13px;border-radius:12px;font-size:0.82rem;line-height:1.45}
-        .msg-out{background:rgba(255,255,255,0.08);color:var(--text2);align-self:flex-end;border-radius:12px 12px 2px 12px}
-        .msg-in{background:linear-gradient(135deg,rgba(124,58,237,0.28),rgba(59,130,246,0.18));color:var(--text);align-self:flex-start;border-radius:12px 12px 12px 2px;border:1px solid rgba(168,85,247,0.18)}
+        .msg-out{background:rgba(255,255,255,0.12);color:#fff;align-self:flex-end;border-radius:12px 12px 2px 12px;box-shadow:0 2px 8px rgba(0,0,0,0.2)}
+        .msg-in{background:linear-gradient(135deg,rgba(124,58,237,0.4),rgba(59,130,246,0.3));color:#fff;align-self:flex-start;border-radius:12px 12px 12px 2px;border:1px solid rgba(168,85,247,0.3);box-shadow:0 2px 8px rgba(0,0,0,0.2)}
         .msg-time{font-size:0.6rem;color:var(--muted);margin-top:3px;text-align:right;font-family:var(--font-mono)}
         .typing{align-self:flex-start;display:flex;gap:3px;padding:10px 14px;background:rgba(124,58,237,0.14);border-radius:12px;border:1px solid rgba(168,85,247,0.14)}
         .typing span{width:5px;height:5px;border-radius:50%;background:var(--accent);animation:typ 1.2s infinite}
@@ -255,7 +255,7 @@ export default function AgenteIAPage() {
                                     <div className="msg msg-out">Ortopedia. Tem horário às 14h?<div className="msg-time">23:15</div></div>
                                     <div className="msg msg-in">Perfeito! Temos 14h disponível com o Dr. Carlos. Para confirmar, me passa seu nome completo? ✅<div className="msg-time">23:15</div></div>
                                 </div>
-                                <div className="phone-bottom"><span>💰</span><div><strong>+R$1.200</strong> — consulta agendada às 23h</div></div>
+                                <div className="phone-bottom"><span>💰</span><div><strong>+R$1.200</strong> : consulta agendada às 23h</div></div>
                             </div>
                         </div>
                     </div>
