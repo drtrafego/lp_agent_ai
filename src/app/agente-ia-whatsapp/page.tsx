@@ -249,11 +249,11 @@ export default function AgenteIAPage() {
                                     <div><div className="phone-name">Sofia · Clínica Bella</div><div className="phone-online">● online agora</div></div>
                                 </div>
                                 <div className="phone-msgs">
-                                    <div className="msg msg-out">Oi, vi o anúncio! Quanto custa uma consulta?<div className="msg-time">23:14</div></div>
-                                    <div className="typing"><span></span><span></span><span></span></div>
-                                    <div className="msg msg-in">Olá! 😊 Nossas consultas começam a partir de R$180. Temos horários disponíveis amanhã! Qual especialidade você precisa?<div className="msg-time">23:14</div></div>
-                                    <div className="msg msg-out">Ortopedia. Tem horário às 14h?<div className="msg-time">23:15</div></div>
-                                    <div className="msg msg-in">Perfeito! Temos 14h disponível com o Dr. Carlos. Para confirmar, me passa seu nome completo? ✅<div className="msg-time">23:15</div></div>
+                                    <div className="msg msg-out msg-1">Oi, vi o anúncio! Quanto custa uma consulta?<div className="msg-time">23:14</div></div>
+                                    <div className="typing typing-1"><span></span><span></span><span></span></div>
+                                    <div className="msg msg-in msg-2">Olá! 😊 Nossas consultas começam a partir de R$180. Temos horários disponíveis amanhã! Qual especialidade você precisa?<div className="msg-time">23:14</div></div>
+                                    <div className="msg msg-out msg-3">Ortopedia. Tem horário às 14h?<div className="msg-time">23:15</div></div>
+                                    <div className="msg msg-in msg-4">Perfeito! Temos 14h disponível com o Dr. Carlos. Para confirmar, me passa seu nome completo? ✅<div className="msg-time">23:15</div></div>
                                 </div>
                                 <div className="phone-bottom"><span>💰</span><div><strong>+R$1.200</strong> : consulta agendada às 23h</div></div>
                             </div>

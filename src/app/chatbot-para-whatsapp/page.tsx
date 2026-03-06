@@ -253,6 +253,13 @@ export default function ComparativoCusto() {
                 <div className="calc-row"><span className="label">13º salário</span><span className="value">+ R$ 183</span></div>
                 <div className="calc-row"><span className="label">VT + VA</span><span className="value">+ R$ 450</span></div>
               </div>
+              <div className="phone-msgs">
+                <div className="msg msg-out msg-1">Oi, quero saber sobre o plano de R$97<div className="msg-time">23:14</div></div>
+                <div className="typing typing-1"><span></span><span></span><span></span></div>
+                <div className="msg msg-in msg-2">Olá! 😊 O plano anual te dá acesso a todas as aulas + comunidade. Quer o link com 20% de desconto?<div className="msg-time">23:14</div></div>
+                <div className="msg msg-out msg-3">Quero sim! Pix parcela?<div className="msg-time">23:15</div></div>
+                <div className="msg msg-in msg-4">Só um minuto, vou gerar seu link exclusivo com parcelamento no Pix! ✅<div className="msg-time">23:15</div></div>
+              </div>
               <div className="calc-divider"></div>
               <div className="calc-total">
                 <span className="label">Custo real por mês</span>
